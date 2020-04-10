@@ -26,6 +26,7 @@ const Person = (props) => {
         </span>
         years old
       </p>
+      <input type="text" onChange={props.change} />
     </div>
   );
 };
