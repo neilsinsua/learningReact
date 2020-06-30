@@ -2,7 +2,21 @@ import React from "react";
 import "./App.css";
 import { Component } from "react";
 import Person from "./Person/Person";
-import Radium, { StyleRoot } from "radium";
+//import Radium, { StyleRoot } from "radium";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  background-color: ${(props) => (props.alt ? "red" : "green")};
+  color: black;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${(props) => (props.alt ? "pink" : "lightgreen")};
+    color: white;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -87,16 +101,14 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <button onClick={this.togglePeople} style={styleButton}>
-            Show people
-          </button>
-          {person}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <StyledButton onClick={this.togglePeople} alt={this.state.showPeople}>
+          Show people
+        </StyledButton>
+        {person}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
