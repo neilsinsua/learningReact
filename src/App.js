@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Component } from "react";
 import Person from "./Person/Person";
+import Radium, { StyleRoot } from "radium";
 
 class App extends Component {
   state = {
@@ -46,6 +47,18 @@ class App extends Component {
 
   render() {
     let person = null;
+    const styleButton = {
+      backgroundColor: "green",
+      color: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      passing: "8px",
+      cursor: "pointer",
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black",
+      },
+    };
 
     if (this.state.showPeople) {
       person = (
@@ -65,15 +78,25 @@ class App extends Component {
           })}
         </div>
       );
+
+      styleButton.backgroundColor = "red";
+      styleButton[":hover"] = {
+        backgroundColor: "pink",
+        color: "black",
+      };
     }
 
     return (
-      <div className="App">
-        <button onClick={this.togglePeople}>Show people</button>
-        {person}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <button onClick={this.togglePeople} style={styleButton}>
+            Show people
+          </button>
+          {person}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);

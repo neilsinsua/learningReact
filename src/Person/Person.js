@@ -1,4 +1,5 @@
 import React from "react";
+import Radium from "radium";
 
 const Person = (props) => {
   const stylePerson = {
@@ -6,6 +7,9 @@ const Person = (props) => {
     margin: "5px auto",
     width: "20%",
     padding: "5px",
+    "@media (min-width: 800px)": {
+      border: "solid pink 5px",
+    },
   };
 
   const styleWord = {
@@ -31,4 +35,4 @@ const Person = (props) => {
   );
 };
 
-export default Person;
+export default Radium(Person);
